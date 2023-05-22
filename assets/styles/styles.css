@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body {
+  background-color: #b9e6d7;
+  max-width: 1600px;
+  width: 100%;
+}
+
+.service__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.service__title {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.service__form-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: normal;
+  color: #4710df;
+}
+
+.service__form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+input {
+  height: 10%;
+}
+
+.service__chat {
+  margin-left: 15%;
+}
+
+.service__chat-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: normal;
+  color: #4710df;
+}/*# sourceMappingURL=styles.css.map */

@@ -27,6 +27,7 @@ function showImg(src) {
     const imgContainer = document.querySelector('.service__chat');
 
     let image = document.createElement('img');
+    image.classList.add('img__size')
     image.src = src;
     imgContainer.append(image);
 }
@@ -39,9 +40,10 @@ function checkSpam(str){
     const userComments = document.getElementById('comments').value;
 
     let editComments = userComments.trim();
-    editComments = userComments.replace(/viagra/gi, '***');
+    editComments = userComments.replace(/viagra|xxx/gi, '***');
+    commentsDiv.textContent = editComments;
 
-    commentsContainer.append(editComments);
+    commentsContainer.append(commentsDiv);
     document.getElementById('comments').value = " ";
 
 }

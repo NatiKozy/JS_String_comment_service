@@ -60,6 +60,17 @@ button.addEventListener('click', () =>{
 {once:true}
 );
 
+const str = '<div id="text"><h1>Здесь лежит важная</h1><br> <a href="link"><b>информация</b></a> о тегах HTML, <i>которую нужно очистить.</i></div>'
+
+function deleteTags(str) {
+    const regex = /( |<([^>]+)>)/ig,
+    result = str.replace(regex, " ");
+
+    return result;
+}
+
+document.writeln(deleteTags(str)) // 'Здесь лежит важная информация о тегах HTML, которую нужно очистить.'
+
 
 
 

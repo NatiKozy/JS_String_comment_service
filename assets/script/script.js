@@ -6,70 +6,64 @@
 // - функция должна быть нечувствительна к регистру:
 
 
-function correctName(str){
-    const nameContainer = document.querySelector('.service__chat');
-
-    const nameInput = document.createElement('div');
-    const username = document.getElementById('name').value;
-
-    let change = username.trim();
-
-    change = (username[0].toUpperCase() + username.slice(1).toLowerCase());
-
-
-    nameInput.textContent = change;
-    nameContainer.append(nameInput);
-    document.getElementById('name').value = " ";
-
-}
-
-function showImg(src) {
-    const imgContainer = document.querySelector('.service__chat');
+function showData(name, imageSrc, editComments){
+    let nameInput = document.createElement('div');
+    nameInput.textContent = name;
 
     let image = document.createElement('img');
-    image.classList.add('img__size')
-    image.src = src;
-    imgContainer.append(image);
-}
+    image.classList.add('img__size');
+    image.src = imageSrc;
 
-function checkSpam(str){
-    const commentsContainer = document.querySelector('.service__chat');
-
-    const commentsDiv = document.createElement('div');
-
-    const userComments = document.getElementById('comments').value;
-
-    let editComments = userComments.trim();
-    editComments = userComments.replace(/viagra|xxx/gi, '***');
+    let commentsDiv = document.createElement('div');
     commentsDiv.textContent = editComments;
 
-    commentsContainer.append(commentsDiv);
-    document.getElementById('comments').value = " ";
+    let nameContainer = document.querySelector('.service__chat');
+    nameContainer.append(nameInput);
+    nameContainer.append(image);
+    nameContainer.append(commentsDiv);
+}
 
+
+function correctName(str){
+    let rightName = str.trim();
+    rightName = (rightName[0].toUpperCase() + rightName.slice(1).toLowerCase());
+    return rightName;
+}
+
+
+function checkSpam(str){
+    let editComments = str.trim();
+    editComments = /(viagra|xxx)/gi;
+    return str.replace(editComments, '***');
 }
 
 
 const input = document.getElementById('avatar');
 const button = document.getElementById('button');
 button.addEventListener('click', () =>{
-    correctName();
-    showImg(input.value);
-    input.value = null;
-    checkSpam();
-},
-{once:true}
-);
+    let formattedName = correctName(document.getElementById('name').value);
+    document.getElementById('name').value = " ";
 
-const str = '<div id="text"><h1>Здесь лежит важная</h1><br> <a href="link"><b>информация</b></a> о тегах HTML, <i>которую нужно очистить.</i></div>'
+    let input = document.getElementById('avatar').value;
+    document.getElementById('avatar').value = " ";
 
-function deleteTags(str) {
+    let userComments = checkSpam(document.getElementById('comments').value);
+    document.getElementById('comments').value = " ";
+
+    showData(formattedName, input, userComments);
+
+});
+
+const text = '<div id="text"><h1>Здесь лежит важная</h1><br> <a href="link"><b>информация</b></a> о тегах HTML, <i>которую нужно очистить.</i></div>'
+
+function deleteTags(text) {
     const regex = /( |<([^>]+)>)/ig,
-    result = str.replace(regex, " ");
+    result = text.replace(regex, " ");
 
     return result;
 }
 
-document.writeln(deleteTags(str)) // 'Здесь лежит важная информация о тегах HTML, которую нужно очистить.'
+document.writeln(deleteTags(text)) // 'Здесь лежит важная информация о тегах HTML, которую нужно очистить.'
 
 
 
